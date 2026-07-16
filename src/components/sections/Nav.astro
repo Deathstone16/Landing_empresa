@@ -1,0 +1,135 @@
+---
+const navLinks = [
+  { label: 'Trabajos', href: '#portfolio', i18n: 'nav.trabajos' },
+  { label: 'Contacto', href: '#contact', i18n: 'nav.contacto' },
+];
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border/50 transition-all duration-300" id="nav" data-nav>
+  <nav class="max-w-7xl mx-auto px-5 md:px-8 lg:px-10 flex items-center justify-between h-16 md:h-18" aria-label="Principal">
+    <a href="/" class="flex items-center gap-2.5 no-underline font-heading font-normal text-xl text-text-primary hover:text-primary-500 transition-colors duration-200">
+      <svg width="32" height="32" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+        <rect width="28" height="28" rx="6" fill="currentColor" class="text-primary-500"/>
+        <path d="M8 20V8h4l4 6 4-6h4v12h-4V14l-4 6-4-6v6H8z" fill="currentColor" class="text-bg"/>
+      </svg>
+      Norware
+    </a>
+
+    <div class="hidden md:flex items-center gap-1">
+      {navLinks.map((link) => (
+        <a href={link.href} class="group relative px-5 py-2 text-sm font-medium tracking-[-0.01em] text-text-primary/75 hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n={link.i18n}>
+          {link.label}
+          <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-primary-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+        </a>
+      ))}
+      <a href="#contact" class="ml-3 inline-flex items-center px-5 py-2.5 text-sm font-semibold tracking-[-0.01em] rounded-lg bg-primary-500 text-white btn-glow hover:bg-primary-600 active:scale-[0.97] transition-all duration-200 no-underline" data-i18n="nav.empezar">
+        Empezar un proyecto
+      </a>
+
+      <button id="theme-toggle" class="ml-2 p-2 rounded-lg text-text-secondary/60 hover:text-primary-500 hover:bg-surface-secondary transition-all duration-200" type="button" aria-label="Cambiar modo claro">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="block light:hidden" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="hidden light:block" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <button id="lang-toggle" class="ml-1 p-2 rounded-lg text-text-primary/60 hover:text-primary-500 hover:bg-surface-secondary transition-all duration-200 text-xs font-semibold uppercase tracking-wider" type="button" data-i18n="lang.toggle" aria-label="Toggle language">
+        EN
+      </button>
+    </div>
+
+    <div class="flex md:hidden items-center gap-2">
+      <button id="theme-toggle-mobile" class="p-2 rounded-lg text-text-secondary/60 hover:text-primary-500 transition-all duration-200" type="button" aria-label="Cambiar modo claro">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="block light:hidden" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="hidden light:block" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <button id="lang-toggle-mobile" class="p-2 rounded-lg text-text-primary/60 hover:text-primary-500 transition-all duration-200 text-xs font-semibold uppercase tracking-wider" type="button" data-i18n="lang.toggle" aria-label="Toggle language">
+        EN
+      </button>
+      <button class="p-2 rounded-lg hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Abrir menú" data-menu-toggle>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <line x1="4" x2="20" y1="7" y2="7" />
+          <line x1="4" x2="20" y1="12" y2="12" />
+          <line x1="4" x2="20" y1="17" y2="17" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <div class="md:hidden fixed inset-0 z-40 bg-bg/95 flex-col items-center justify-center hidden" data-mobile-menu>
+    <button class="absolute top-4 right-5 p-3 rounded-lg hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Cerrar menú" data-menu-close>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <nav class="flex flex-col items-center gap-8">
+      {navLinks.map((link) => (
+        <a href={link.href} class="text-2xl font-heading font-normal text-text-primary/80 hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n={link.i18n}>
+          {link.label}
+        </a>
+      ))}
+      <a href="#contact" class="mt-4 inline-flex items-center px-6 py-3 text-base font-semibold rounded-lg bg-primary-500 text-white btn-glow hover:bg-primary-600 active:scale-[0.97] transition-all duration-200 no-underline" data-i18n="nav.empezar">
+        Empezar un proyecto
+      </a>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const nav = document.querySelector('[data-nav]');
+  const toggle = document.querySelector('[data-menu-toggle]');
+  const menu = document.querySelector('[data-mobile-menu]');
+  const closeBtn = document.querySelector('[data-menu-close]');
+  let isOpen = false;
+
+  const updateNavBorder = () => {
+    if (window.scrollY > 50) {
+      nav.style.borderBottomColor = 'var(--color-border)';
+    } else {
+      nav.style.borderBottomColor = 'var(--color-border-light)';
+    }
+  };
+
+  window.addEventListener('scroll', updateNavBorder, { passive: true });
+  updateNavBorder();
+
+  const openMenu = () => {
+    isOpen = true;
+    menu.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    isOpen = false;
+    menu.classList.add('hidden');
+    document.body.style.overflow = '';
+  };
+
+  toggle?.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  const toggleTheme = () => {
+    const html = document.documentElement;
+    const isLight = html.classList.toggle('light');
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+  };
+
+  document.querySelectorAll('#theme-toggle, #theme-toggle-mobile').forEach(btn => {
+    btn.addEventListener('click', toggleTheme);
+  });
+
+  document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(btn => {
+    btn.addEventListener('click', window.__toggleLang);
+  });
+</script>

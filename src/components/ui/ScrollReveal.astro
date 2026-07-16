@@ -1,0 +1,37 @@
+---
+interface Props {
+  class?: string;
+  stagger?: boolean;
+  threshold?: number;
+}
+
+const { class: className, stagger = false, threshold = 0.15 } = Astro.props;
+const revealClass = stagger ? 'reveal reveal-stagger' : 'reveal';
+---
+
+<div class:list={[revealClass, className]} data-reveal data-reveal-threshold={threshold}>
+  <slot />
+</div>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          const target = entry.target as HTMLElement;
+          const children = target.querySelectorAll('.reveal-child, .reveal');
+          if (target.dataset.revealStagger !== undefined) {
+            target.classList.add('reveal-visible');
+          } else {
+            children.forEach((el) => el.classList.add('reveal-visible'));
+          }
+          target.classList.add('reveal-visible');
+          observer.unobserve(target);
+        }
+      }
+    },
+    { threshold: 0.15 }
+  );
+
+  document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+</script>

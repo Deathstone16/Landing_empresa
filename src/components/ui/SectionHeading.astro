@@ -1,0 +1,27 @@
+---
+interface Props {
+  tag?: 'h1' | 'h2' | 'h3';
+  subtitle?: string;
+  subtitleHtml?: string;
+  centered?: boolean;
+  class?: string;
+  titleKey?: string;
+  subtitleKey?: string;
+}
+
+const { tag: Tag = 'h2', subtitle, subtitleHtml, centered = true, class: className, titleKey, subtitleKey } = Astro.props;
+---
+
+<header class:list={['mb-12 md:mb-16', centered ? 'text-center' : '', className]}>
+  <Tag class="font-heading text-3xl md:text-4xl lg:text-5xl font-normal leading-[1.1] tracking-[-0.02em] text-text-primary" {...(titleKey ? { 'data-i18n-html': titleKey } : {})}>
+    <slot />
+  </Tag>
+  {subtitleHtml && (
+    <p class="mt-4 text-lg md:text-xl text-text-secondary/70 max-w-xl mx-auto leading-relaxed" set:html={subtitleHtml} {...(subtitleKey ? { 'data-i18n-html': subtitleKey } : {})} />
+  )}
+  {!subtitleHtml && subtitle && (
+    <p class="mt-4 text-lg md:text-xl text-text-secondary/70 max-w-xl mx-auto leading-relaxed" {...(subtitleKey ? { 'data-i18n': subtitleKey } : {})}>
+      {subtitle}
+    </p>
+  )}
+</header>

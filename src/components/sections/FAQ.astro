@@ -1,0 +1,60 @@
+---
+import SectionHeading from '../ui/SectionHeading.astro';
+
+const faqs = [
+  {
+    question: '¿Cuánto dura un proyecto típico?',
+    answer: 'La mayoría de los proyectos duran entre 6 y 12 semanas, desde el inicio hasta el lanzamiento. El timeline depende de la complejidad, pero siempre establecemos una hoja de ruta clara durante la fase de Descubrimiento — y la cumplimos.',
+    qKey: 'faq.q1',
+    aKey: 'faq.a1',
+  },
+  {
+    question: '¿Cuánto cuesta un proyecto?',
+    answer: 'Los proyectos comienzan en $25k y escalan según el alcance y la complejidad. Cada compromiso comienza con una fase de Descubrimiento donde definimos el alcance completo, el timeline y el presupuesto — sin sorpresas.',
+    qKey: 'faq.q2',
+    aKey: 'faq.a2',
+  },
+  {
+    question: '¿Cómo manejan los cambios de alcance?',
+    answer: 'Los cambios son normales. Usamos un proceso estructurado: nos decís qué cambió, evaluamos el impacto en el timeline y presupuesto, y aprobás antes de comenzar cualquier trabajo. Sin desvíos de alcance no autorizados.',
+    qKey: 'faq.q3',
+    aKey: 'faq.a3',
+  },
+  {
+    question: '¿Qué tecnologías usan?',
+    answer: 'Somos agnósticos en tecnología pero nos inclinamos por herramientas modernas y probadas: React, Next.js, Node.js, Python, Go, PostgreSQL e infraestructura cloud-native en AWS/GCP. Elegimos la herramienta adecuada para tu problema específico.',
+    qKey: 'faq.q4',
+    aKey: 'faq.a4',
+  },
+  {
+    question: '¿Qué pasa después del lanzamiento?',
+    answer: 'Incluimos un período de soporte post-lanzamiento de 30 a 90 días según el plan para resolver cualquier inconveniente y capacitar a tu equipo. Luego ofrecemos mantenimiento continuo, escalado y retainers para nuevas funcionalidades.',
+    qKey: 'faq.q5',
+    aKey: 'faq.a5',
+  },
+];
+---
+
+<section id="faq" class="py-20 md:py-28 bg-bg" aria-label="Preguntas frecuentes">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 lg:px-10">
+    <SectionHeading subtitleHtml="Todo lo que necesitás saber antes de <span class=&quot;text-primary-500&quot;>empezar a hablar</span>." titleKey="faq.title" subtitleKey="faq.subtitle">
+      Preguntas frecuentes
+    </SectionHeading>
+
+    <div class="space-y-0">
+      {faqs.map((faq) => (
+        <details class="group border-b border-border/60 last:border-b-0 transition-colors duration-200">
+          <summary class="flex items-center justify-between px-6 py-5 cursor-pointer text-text-primary font-medium hover:text-primary-500 transition-colors duration-200 list-none min-h-[48px]">
+            <span data-i18n={faq.qKey}>{faq.question}</span>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="shrink-0 text-text-tertiary group-open:rotate-180 transition-transform duration-300" aria-hidden="true">
+              <path d="M6 8l4 4 4-4" />
+            </svg>
+          </summary>
+          <div class="px-6 pb-5">
+            <p class="text-sm text-text-secondary leading-relaxed" data-i18n={faq.aKey}>{faq.answer}</p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

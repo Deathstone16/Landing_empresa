@@ -1,0 +1,62 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="border-t border-border/50 bg-bg" aria-label="Pie de página">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-10 py-16 md:py-20">
+    <div class="grid md:grid-cols-5 gap-8">
+      <div class="md:col-span-2">
+        <a href="/" class="inline-flex items-center gap-2.5 no-underline font-heading font-normal text-xl text-text-primary hover:text-primary-500 transition-colors duration-200 mb-4">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none" aria-hidden="true">
+            <rect width="28" height="28" rx="6" fill="currentColor" class="text-primary-500"/>
+            <path d="M8 20V8h4l4 6 4-6h4v12h-4V14l-4 6-4-6v6H8z" fill="currentColor" class="text-bg"/>
+          </svg>
+          Norware
+        </a>
+        <p class="text-sm text-text-tertiary leading-relaxed max-w-sm" data-i18n="footer.description">
+          Resolvemos problemas de negocio con software a medida. Automatización, integración y productos digitales con equipo senior y entregas predecibles.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold text-text-tertiary uppercase tracking-wider mb-4" data-i18n="footer.contact">Navegación</h4>
+        <nav aria-label="Footer">
+          <ul class="space-y-3">
+            <li><a href="#portfolio" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline">Trabajos</a></li>
+            <li><a href="#services" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline">Servicios</a></li>
+            <li><a href="#contact" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline">Contacto</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold text-text-tertiary uppercase tracking-wider mb-4" data-i18n="footer.services">Servicios</h4>
+        <ul class="space-y-3">
+          <li><a href="#services" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n="footer.service1">Diagnóstico y estrategia</a></li>
+          <li><a href="#services" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n="footer.service2">Implementación</a></li>
+          <li><a href="#services" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n="footer.service3">Evolución y soporte</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-sm font-semibold text-text-tertiary uppercase tracking-wider mb-4" data-i18n="footer.social">Conecta</h4>
+        <ul class="space-y-3">
+          <li><a href="mailto:hello@norware.dev" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n="footer.email">hello@norware.dev</a></li>
+          <li><a href="https://github.com/norware" target="_blank" rel="noopener noreferrer" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline">GitHub</a></li>
+          <li><a href="https://linkedin.com/company/norware" target="_blank" rel="noopener noreferrer" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline">LinkedIn</a></li>
+          <li><a href="https://wa.me/5491123456789" target="_blank" rel="noopener noreferrer" class="text-sm text-text-secondary hover:text-primary-500 transition-colors duration-200 no-underline"><span data-i18n="footer.whatsapp">WhatsApp</span></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-12 pt-8 border-t border-border/50 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-text-tertiary" data-i18n-html="footer.copyright">
+        &copy; {currentYear} Norware. Todos los derechos reservados.
+      </p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 no-underline">Política de Privacidad</a>
+        <a href="#" class="text-xs text-text-tertiary hover:text-text-secondary transition-colors duration-200 no-underline">Términos del Servicio</a>
+      </div>
+    </div>
+  </div>
+</footer>

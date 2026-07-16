@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/sections/Nav.astro';
+import Hero from '../components/sections/Hero.astro';
+import Portfolio from '../components/sections/Portfolio.astro';
+import Services from '../components/sections/Services.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import Contact from '../components/sections/Contact.astro';
+import Footer from '../components/sections/Footer.astro';
+import WhatsAppButton from '../components/ui/WhatsAppButton.astro';
+---
+
+<BaseLayout>
+  <Nav />
+
+  <main id="main-content">
+    <Hero />
+    <Portfolio />
+    <Services />
+    <FAQ />
+    <Contact />
+  </main>
+
+  <Footer />
+
+  <WhatsAppButton />
+</BaseLayout>

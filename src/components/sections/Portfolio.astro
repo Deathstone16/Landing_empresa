@@ -37,19 +37,21 @@ const projects: Project[] = [
 
 <section id="portfolio" class="py-20 md:py-28 bg-bg" aria-label="Trabajos seleccionados">
   <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-10">
-    <SectionHeading subtitleHtml="Proyectos <span class=&quot;text-primary-500&quot;>reales</span>, <span class=&quot;text-primary-500&quot;>resultados concretos</span>." titleKey="portfolio.title" subtitleKey="portfolio.subtitle">
-      Trabajos seleccionados
-    </SectionHeading>
+    <ScrollReveal type="fade-up">
+      <SectionHeading subtitleHtml="Proyectos <span class=&quot;text-primary-500&quot;>reales</span>, <span class=&quot;text-primary-500&quot;>resultados concretos</span>." titleKey="portfolio.title" subtitleKey="portfolio.subtitle">
+        Trabajos seleccionados
+      </SectionHeading>
+    </ScrollReveal>
 
     <div class="grid md:grid-cols-3 gap-8 md:gap-10">
-      {projects.map((project) => (
-        <article class="group relative overflow-hidden rounded-lg border border-border/60 bg-surface hover:border-primary-500/30 transition-all duration-500">
+      {projects.map((project, i) => (
+        <article class="group relative overflow-hidden rounded-lg border border-border/60 bg-surface hover:border-primary-500/30 transition-all duration-700 reveal-scale-in" style={`transition-delay: ${i * 150}ms`}>
           <div class={`aspect-[4/3] bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-500/20 group-hover:text-primary-500/40 group-hover:scale-110 transition-all duration-500" aria-hidden="true">
               <path d={project.icon} />
             </svg>
-            <div class="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+            <div class="absolute inset-0 bg-gradient-to-t from-bg/80 via-bg/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+              <div class="absolute bottom-0 left-0 right-0 p-6 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
                 <div class="flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span class="px-2.5 py-1 text-xs font-medium rounded-full bg-secondary-400/10 text-secondary-400 ring-1 ring-secondary-400/20 backdrop-blur-sm">

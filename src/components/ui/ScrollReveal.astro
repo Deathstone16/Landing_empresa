@@ -1,37 +1,52 @@
 ---
 interface Props {
   class?: string;
-  stagger?: boolean;
+  type?: 'clip' | 'fade-up' | 'scale-in' | 'blur-in' | 'clip-left' | 'stagger';
   threshold?: number;
 }
 
-const { class: className, stagger = false, threshold = 0.15 } = Astro.props;
-const revealClass = stagger ? 'reveal reveal-stagger' : 'reveal';
+const { class: className, type = 'fade-up', threshold = 0.15 } = Astro.props;
+
+const revealClass = type === 'stagger' ? 'reveal-stagger-wrapper' : `reveal-${type}`;
+const baseClass = type === 'clip' || type === 'clip-up' || type === 'clip-left' ? '' : '';
 ---
 
-<div class:list={[revealClass, className]} data-reveal data-reveal-threshold={threshold}>
+<div class:list={[revealClass, className]} data-reveal data-reveal-threshold={threshold} data-reveal-type={type}>
   <slot />
 </div>
 
 <script>
+  const REVEAL_SELECTOR = '[data-reveal], .reveal-fade-up, .reveal-scale-in, .reveal-blur-in, .reveal-clip-up, .reveal-clip-left, .reveal, .reveal-stagger-wrapper';
   const observer = new IntersectionObserver(
     (entries) => {
       for (const entry of entries) {
+        const target = entry.target as HTMLElement;
+
         if (entry.isIntersecting) {
-          const target = entry.target as HTMLElement;
-          const children = target.querySelectorAll('.reveal-child, .reveal');
-          if (target.dataset.revealStagger !== undefined) {
+          if (target.classList.contains('reveal-stagger-wrapper')) {
             target.classList.add('reveal-visible');
+            const children = target.querySelectorAll(':scope > .reveal-stagger-item');
+            children.forEach((el, i) => {
+              (el as HTMLElement).style.setProperty('--si', String(i));
+              el.classList.add('reveal-stagger-item-visible');
+            });
           } else {
-            children.forEach((el) => el.classList.add('reveal-visible'));
+            target.classList.add('reveal-visible');
           }
-          target.classList.add('reveal-visible');
-          observer.unobserve(target);
+        } else {
+          if (target.classList.contains('reveal-stagger-wrapper')) {
+            target.classList.remove('reveal-visible');
+            target.querySelectorAll(':scope > .reveal-stagger-item').forEach((el) => {
+              el.classList.remove('reveal-stagger-item-visible');
+            });
+          } else {
+            target.classList.remove('reveal-visible');
+          }
         }
       }
     },
-    { threshold: 0.15 }
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
 
-  document.querySelectorAll('[data-reveal]').forEach((el) => observer.observe(el));
+  document.querySelectorAll(REVEAL_SELECTOR).forEach((el) => observer.observe(el));
 </script>

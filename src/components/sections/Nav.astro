@@ -63,19 +63,19 @@ const navLinks = [
     </div>
   </nav>
 
-  <div class="md:hidden fixed inset-0 z-40 bg-bg/95 flex-col items-center justify-center hidden" data-mobile-menu>
+  <div class="md:hidden fixed inset-0 z-40 bg-bg/95 flex-col items-center justify-center hidden" data-mobile-menu style="animation: mobile-menu-in 300ms cubic-bezier(0.16, 1, 0.3, 1) both;">
     <button class="absolute top-4 right-5 p-3 rounded-lg hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Cerrar menú" data-menu-close>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
     <nav class="flex flex-col items-center gap-8">
-      {navLinks.map((link) => (
-        <a href={link.href} class="text-2xl font-heading font-normal text-text-primary/80 hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n={link.i18n}>
+      {navLinks.map((link, i) => (
+        <a href={link.href} class="text-2xl font-heading font-normal text-text-primary/80 hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n={link.i18n} style={`animation: mobile-menu-link-in 400ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 100 + 50}ms both;`}>
           {link.label}
         </a>
       ))}
-      <a href="#contact" class="mt-4 inline-flex items-center px-6 py-3 text-base font-semibold rounded-lg bg-primary-500 text-white btn-glow hover:bg-primary-600 active:scale-[0.97] transition-all duration-200 no-underline" data-i18n="nav.empezar">
+      <a href="#contact" class="mt-4 inline-flex items-center px-6 py-3 text-base font-semibold rounded-lg bg-primary-500 text-white btn-glow hover:bg-primary-600 active:scale-[0.97] transition-all duration-200 no-underline" data-i18n="nav.empezar" style="animation: mobile-menu-link-in 400ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;">
         Empezar un proyecto
       </a>
     </nav>

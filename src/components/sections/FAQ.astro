@@ -1,5 +1,6 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
+import ScrollReveal from '../ui/ScrollReveal.astro';
 
 const faqs = [
   {
@@ -37,21 +38,27 @@ const faqs = [
 
 <section id="faq" class="py-20 md:py-28 bg-bg" aria-label="Preguntas frecuentes">
   <div class="max-w-3xl mx-auto px-5 md:px-8 lg:px-10">
-    <SectionHeading subtitleHtml="Todo lo que necesitás saber antes de <span class=&quot;text-primary-500&quot;>empezar a hablar</span>." titleKey="faq.title" subtitleKey="faq.subtitle">
-      Preguntas frecuentes
-    </SectionHeading>
+    <ScrollReveal type="fade-up">
+      <SectionHeading subtitleHtml="Todo lo que necesitás saber antes de <span class=&quot;text-primary-500&quot;>empezar a hablar</span>." titleKey="faq.title" subtitleKey="faq.subtitle">
+        Preguntas frecuentes
+      </SectionHeading>
+    </ScrollReveal>
 
     <div class="space-y-0">
-      {faqs.map((faq) => (
-        <details class="group border-b border-border/60 last:border-b-0 transition-colors duration-200">
+      {faqs.map((faq, i) => (
+        <details class="group border-b border-border/60 last:border-b-0 transition-colors duration-200 reveal-fade-up" style={`transition-delay: ${i * 80}ms`}>
           <summary class="flex items-center justify-between px-6 py-5 cursor-pointer text-text-primary font-medium hover:text-primary-500 transition-colors duration-200 list-none min-h-[48px]">
             <span data-i18n={faq.qKey}>{faq.question}</span>
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="shrink-0 text-text-tertiary group-open:rotate-180 transition-transform duration-300" aria-hidden="true">
               <path d="M6 8l4 4 4-4" />
             </svg>
           </summary>
-          <div class="px-6 pb-5">
-            <p class="text-sm text-text-secondary leading-relaxed" data-i18n={faq.aKey}>{faq.answer}</p>
+          <div class="faq-content">
+            <div>
+              <div class="px-6 pb-5">
+                <p class="text-sm text-text-secondary leading-relaxed" data-i18n={faq.aKey}>{faq.answer}</p>
+              </div>
+            </div>
           </div>
         </details>
       ))}

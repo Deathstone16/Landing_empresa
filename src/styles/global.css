@@ -66,7 +66,7 @@
   --color-secondary-600: #3A4B5A;
 
   --color-text-primary: #1A1C1E;
-  --color-text-secondary: #808288;
+  --color-text-secondary: #5E6068;
   --color-text-tertiary: #A0A2A8;
   --gradient-glow-1: rgba(58, 90, 184, 0.05);
   --gradient-glow-2: rgba(46, 74, 158, 0.04);
@@ -145,23 +145,158 @@ body {
   transform: translateY(-2px);
 }
 
+/* ── Shared animation curves ── */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out-strong: cubic-bezier(0.77, 0, 0.175, 1);
+  --duration-slow: 1000ms;
+  --duration-base: 800ms;
+  --duration-fast: 600ms;
+  --duration-instant: 200ms;
+}
+
+/* ── Scroll reveal variants ── */
+
+/* Original clip-path reveal (preserved) */
 .reveal {
   opacity: 0;
   clip-path: inset(0 0 100% 0);
-  transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1),
-              clip-path 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  transition: opacity var(--duration-base) var(--ease-out-expo),
+              clip-path var(--duration-base) var(--ease-out-expo);
 }
 
 .reveal-visible {
-  opacity: 1;
-  clip-path: inset(0);
+  opacity: 1 !important;
+  clip-path: inset(0) !important;
+  transform: translateY(0) !important;
+  filter: blur(0px) !important;
+  scale: 1 !important;
 }
 
-.reveal-stagger > :nth-child(1) { transition-delay: 0ms; }
-.reveal-stagger > :nth-child(2) { transition-delay: 120ms; }
-.reveal-stagger > :nth-child(3) { transition-delay: 240ms; }
-.reveal-stagger > :nth-child(4) { transition-delay: 360ms; }
-.reveal-stagger > :nth-child(5) { transition-delay: 480ms; }
+/* fade-up: translateY + opacity */
+.reveal-fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-base) var(--ease-out-expo),
+              transform var(--duration-base) var(--ease-out-expo);
+}
+
+/* scale-in: subtle scale + opacity */
+.reveal-scale-in {
+  opacity: 0;
+  scale: 0.95;
+  transition: opacity var(--duration-fast) var(--ease-out-expo),
+              scale var(--duration-fast) var(--ease-out-expo);
+}
+
+/* blur-in: blur + opacity (premium feel) */
+.reveal-blur-in {
+  opacity: 0;
+  filter: blur(6px);
+  transition: opacity var(--duration-slow) var(--ease-out-expo),
+              filter var(--duration-slow) var(--ease-out-expo);
+}
+
+/* clip-left: horizontal clip reveal */
+.reveal-clip-left {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path var(--duration-slow) var(--ease-out-expo);
+}
+
+/* clip-up-alt: vertical clip from bottom (same as default .reveal but explicit) */
+.reveal-clip-up {
+  opacity: 0;
+  clip-path: inset(0 0 100% 0);
+  transition: opacity var(--duration-base) var(--ease-out-expo),
+              clip-path var(--duration-base) var(--ease-out-expo);
+}
+
+/* Stagger with CSS custom property (set via JS) */
+.reveal-stagger-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-fast) var(--ease-out-expo),
+              transform var(--duration-fast) var(--ease-out-expo);
+  transition-delay: calc(var(--si, 0) * 80ms);
+}
+
+.reveal-stagger-item-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Compound stagger wrapper — children reveal when parent is visible */
+.reveal-stagger-wrapper > .reveal-stagger-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--duration-fast) var(--ease-out-expo),
+              transform var(--duration-fast) var(--ease-out-expo);
+  transition-delay: calc(var(--si, 0) * 80ms);
+}
+
+.reveal-stagger-wrapper.reveal-visible > .reveal-stagger-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Hero entrance keyframes ── */
+@keyframes hero-float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-16px); }
+}
+
+@keyframes social-pop {
+  0%   { opacity: 0; scale: 0; }
+  70%  { scale: 1.1; }
+  100% { opacity: 1; scale: 1; }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--cta-glow-r), var(--cta-glow-g), var(--cta-glow-b), 0.4); }
+  50%      { box-shadow: 0 0 0 8px rgba(var(--cta-glow-r), var(--cta-glow-g), var(--cta-glow-b), 0); }
+}
+
+@keyframes whatsapp-in {
+  from { opacity: 0; transform: translateX(80px) scale(0.8); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+@keyframes whatsapp-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-6px); }
+}
+
+@keyframes mobile-menu-in {
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to   { opacity: 1; backdrop-filter: blur(8px); }
+}
+
+@keyframes mobile-menu-link-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Utility animation classes ── */
+.animate-hero-float     { animation: hero-float-slow 8s ease-in-out infinite; }
+.animate-pulse-subtle  { animation: pulse-subtle 2.5s ease-in-out infinite; }
+.animate-whatsapp-in   { animation: whatsapp-in 600ms var(--ease-out-expo) 300ms both; }
+.animate-whatsapp-float { animation: whatsapp-float 4s ease-in-out infinite; }
+
+/* ── FAQ smooth open/close ── */
+.faq-content {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 400ms var(--ease-out-strong);
+}
+
+.faq-content > div {
+  overflow: hidden;
+}
+
+details[open] .faq-content {
+  grid-template-rows: 1fr;
+}
 
 .section-divider {
   display: flex;
@@ -191,10 +326,28 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .reveal-fade-up,
+  .reveal-scale-in,
+  .reveal-blur-in,
+  .reveal-clip-left,
+  .reveal-clip-up,
+  .reveal-stagger-item,
+  .reveal-stagger-wrapper > .reveal-stagger-item {
     opacity: 1;
     clip-path: inset(0);
+    transform: translateY(0);
+    filter: blur(0);
+    scale: 1;
     transition: none;
+  }
+  .animate-hero-float,
+  .animate-pulse-subtle,
+  .animate-whatsapp-in,
+  .animate-whatsapp-float {
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
   html {
     scroll-behavior: auto;

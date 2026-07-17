@@ -1,0 +1,19 @@
+00:05:04 [types] Generated 2ms
+
+ astro  v4.16.19 ready in 353 ms
+
+┃ Local    http://127.0.0.1:4321/
+
+00:05:04 watching for file changes...
+00:05:37 [200] / 22ms
+00:08:16 [watch] src/layouts/BaseLayout.astro
+00:08:18 [watch] src/pages/index.astro
+00:08:55 [watch] /src/styles/global.css
+00:09:37 [watch] src/components/sections/Nav.astro
+00:09:38 [watch] src/components/sections/Hero.astro
+00:10:09 [watch] src/scripts/i18n.js
+00:10:10 [watch] /src/styles/global.css
+00:10:26 [200] / 8ms
+00:10:34 [200] / 4ms
+00:12:09 [200] / 4ms
+00:12:30 [200] / 5ms

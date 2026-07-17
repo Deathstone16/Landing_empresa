@@ -1,0 +1,58 @@
+---
+---
+
+<div class="site-intro" aria-hidden="true" data-site-intro>
+  <div class="site-intro-panel site-intro-panel-top"></div>
+  <div class="site-intro-panel site-intro-panel-bottom"></div>
+  <div class="site-intro-content">
+    <div class="site-intro-mark">NW</div>
+    <div class="site-intro-meta">
+      <span>NORWARE</span>
+      <span>SYSTEMS / 01</span>
+    </div>
+    <div class="site-intro-progress"><span data-site-intro-progress></span></div>
+    <span class="site-intro-count" data-site-intro-count>00</span>
+  </div>
+</div>
+
+<script>
+  const intro = document.querySelector<HTMLElement>('[data-site-intro]');
+  const progress = document.querySelector<HTMLElement>('[data-site-intro-progress]');
+  const count = document.querySelector<HTMLElement>('[data-site-intro-count]');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const startedAt = Date.now();
+  let completed = false;
+
+  const finish = () => {
+    if (!intro || completed) return;
+    completed = true;
+    if (reducedMotion) {
+      intro.remove();
+      return;
+    }
+    intro.classList.add('is-exiting');
+    window.setTimeout(() => intro.remove(), 750);
+  };
+
+  const updateProgress = () => {
+    const elapsed = Math.min(Date.now() - startedAt, 650);
+    const value = Math.round((elapsed / 650) * 100);
+    if (progress) progress.style.transform = `scaleX(${value / 100})`;
+    if (count) count.textContent = String(value).padStart(2, '0');
+    if (value < 100 && !completed) window.requestAnimationFrame(updateProgress);
+  };
+
+  if (intro) {
+    if (reducedMotion) {
+      finish();
+    } else {
+      updateProgress();
+      const dismiss = () => window.setTimeout(finish, Math.max(0, 650 - (Date.now() - startedAt)));
+      window.addEventListener('load', dismiss, { once: true });
+      window.setTimeout(finish, 1800);
+      window.addEventListener('pageshow', (event) => {
+        if (event.persisted) finish();
+      });
+    }
+  }
+</script>

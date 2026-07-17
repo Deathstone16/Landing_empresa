@@ -2,8 +2,9 @@
   var translations = {
     es: {
       'nav.trabajos': 'Trabajos',
+      'nav.servicios': 'Servicios',
       'nav.contacto': 'Contacto',
-      'nav.empezar': 'Empezar un proyecto',
+      'nav.empezar': 'Hablemos',
       'theme.toggle': 'Cambiar modo claro',
       'lang.toggle': 'EN',
       'hero.title': 'Tu negocio tiene problemas. <span class="text-primary-500">Los resolvemos con software</span> que funciona.',
@@ -71,8 +72,9 @@
     },
     en: {
       'nav.trabajos': 'Work',
+      'nav.servicios': 'Services',
       'nav.contacto': 'Contact',
-      'nav.empezar': 'Start a project',
+      'nav.empezar': 'Let’s talk',
       'theme.toggle': 'Toggle light mode',
       'lang.toggle': 'ES',
       'hero.title': 'Your business has problems. <span class="text-primary-500">We solve them with software</span> that works.',

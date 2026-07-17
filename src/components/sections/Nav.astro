@@ -1,12 +1,13 @@
 ---
 const navLinks = [
   { label: 'Trabajos', href: '#portfolio', i18n: 'nav.trabajos' },
+  { label: 'Servicios', href: '#services', i18n: 'nav.servicios' },
   { label: 'Contacto', href: '#contact', i18n: 'nav.contacto' },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 bg-surface border-b border-border/50 transition-all duration-300" id="nav" data-nav>
-  <nav class="max-w-7xl mx-auto px-5 md:px-8 lg:px-10 flex items-center justify-between h-16 md:h-18" aria-label="Principal">
+<header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4 transition-all duration-300" id="nav" data-nav>
+  <nav class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-14 bg-surface border border-border/80 rounded-full transition-all duration-300" aria-label="Principal">
     <a href="/" class="flex items-center gap-2.5 no-underline font-heading font-normal text-xl text-text-primary hover:text-primary-500 transition-colors duration-200">
       <svg width="32" height="32" viewBox="0 0 28 28" fill="none" aria-hidden="true">
         <rect width="28" height="28" rx="6" fill="currentColor" class="text-primary-500"/>
@@ -22,8 +23,8 @@ const navLinks = [
           <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-primary-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
         </a>
       ))}
-      <a href="#contact" class="ml-3 inline-flex items-center px-5 py-2.5 text-sm font-semibold tracking-[-0.01em] rounded-lg bg-primary-500 text-white btn-glow hover:bg-primary-600 active:scale-[0.97] transition-all duration-200 no-underline" data-i18n="nav.empezar">
-        Empezar un proyecto
+      <a href="#contact" class="ml-3 inline-flex items-center px-5 py-2 text-sm font-semibold tracking-[-0.01em] rounded-full bg-primary-500 text-bg hover:bg-primary-300 active:scale-[0.98] transition-all duration-200 no-underline" data-i18n="nav.empezar">
+        Hablemos
       </a>
 
       <button id="theme-toggle" class="ml-2 p-2 rounded-lg text-text-secondary/60 hover:text-primary-500 hover:bg-surface-secondary transition-all duration-200" type="button" aria-label="Cambiar modo claro">
@@ -53,7 +54,7 @@ const navLinks = [
       <button id="lang-toggle-mobile" class="p-2 rounded-lg text-text-primary/60 hover:text-primary-500 transition-all duration-200 text-xs font-semibold uppercase tracking-wider" type="button" data-i18n="lang.toggle" aria-label="Toggle language">
         EN
       </button>
-      <button class="p-2 rounded-lg hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Abrir menú" data-menu-toggle>
+      <button class="p-2 rounded-full hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
           <line x1="4" x2="20" y1="7" y2="7" />
           <line x1="4" x2="20" y1="12" y2="12" />
@@ -63,8 +64,8 @@ const navLinks = [
     </div>
   </nav>
 
-  <div class="md:hidden fixed inset-0 z-40 bg-bg/95 flex-col items-center justify-center hidden" data-mobile-menu style="animation: mobile-menu-in 300ms cubic-bezier(0.16, 1, 0.3, 1) both;">
-    <button class="absolute top-4 right-5 p-3 rounded-lg hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Cerrar menú" data-menu-close>
+  <div id="mobile-menu" class="md:hidden fixed top-20 left-4 right-4 z-40 bg-surface border border-border rounded-2xl flex-col items-center justify-center hidden" data-mobile-menu style="animation: mobile-menu-in 300ms cubic-bezier(0.16, 1, 0.3, 1) both;">
+    <button class="absolute top-3 right-3 p-3 rounded-full hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Cerrar menú" data-menu-close>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
@@ -104,16 +105,23 @@ const navLinks = [
     isOpen = true;
     menu.classList.remove('hidden');
     document.body.style.overflow = 'hidden';
+    toggle?.setAttribute('aria-expanded', 'true');
+    closeBtn?.focus();
   };
 
   const closeMenu = () => {
     isOpen = false;
     menu.classList.add('hidden');
     document.body.style.overflow = '';
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.focus();
   };
 
   toggle?.addEventListener('click', openMenu);
   closeBtn?.addEventListener('click', closeMenu);
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && isOpen) closeMenu();
+  });
 
   menu?.querySelectorAll('a').forEach((link) => {
     link.addEventListener('click', closeMenu);

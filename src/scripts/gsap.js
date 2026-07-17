@@ -55,14 +55,18 @@ function initHeroTypewriter() {
   badge.textContent = '';
   badge.style.visibility = 'visible';
   var chars = text.split('');
-  var tl = gsap.timeline({ delay: 0.3 });
-  chars.forEach(function (c, i) { tl.call(function () { badge.textContent += c; }, null, null, i * 0.055); });
+  var tl = gsap.timeline({ delay: 0.4 });
+  chars.forEach(function (c, i) { tl.call(function () { badge.textContent += c; }, null, null, i * 0.03); });
 }
 
 function initHeroSplit() {
-  var tl = gsap.timeline({ delay: 1.2 });
-  tl.call(splitHeroWords);
-  tl.from('.hwi', { y: '100%', opacity: 0, filter: 'blur(8px)', duration: 0.65, stagger: 0.035, ease: 'power4.out' }, '-=0.1');
+  splitHeroWords();
+  gsap.set('.hwi', { y: '100%', opacity: 0, filter: 'blur(8px)' });
+  var fadeEls = document.querySelectorAll('[data-hero-fade]');
+  gsap.set(fadeEls, { y: 24, opacity: 0 });
+  var tl = gsap.timeline({ delay: 0.4 });
+  tl.to('.hwi', { y: '0%', opacity: 1, filter: 'blur(0px)', duration: 0.55, stagger: 0.025, ease: 'power4.out' }, 0);
+  if (fadeEls.length) tl.to(fadeEls, { y: 0, opacity: 1, duration: 0.4, stagger: 0.06, ease: 'power3.out' }, 0.1);
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -93,7 +97,7 @@ function initCardTilt() {
 function initCardReveal() {
   gsap.utils.toArray('[data-tilt]').forEach(function (card, i) {
     var r = [{ rotateY: -10, rotateX: 5 }, { rotateX: 8 }, { rotateY: 10, rotateX: 5 }][i % 3];
-    gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }, opacity: 0, y: 50, rotateY: r.rotateY, rotateX: r.rotateX, duration: 0.85, ease: 'power4.out' });
+    gsap.from(card, { scrollTrigger: { trigger: card, start: 'top bottom-=80', toggleActions: 'play reverse play reverse' }, opacity: 0, y: 30, rotateY: r.rotateY, rotateX: r.rotateX, duration: 0.5, ease: 'power4.out' });
   });
 }
 
@@ -101,8 +105,18 @@ function initCardReveal() {
    5. FEATURES — Clip-path curtain reveal (left to right)
    ═══════════════════════════════════════════════════════════════ */
 function initFeatureReveal() {
-  gsap.utils.toArray('[data-gsap="feature"]').forEach(function (card, i) {
-    gsap.from(card, { scrollTrigger: { trigger: card, start: 'top 88%', toggleActions: 'play none none none' }, clipPath: 'inset(0 100% 0 0)', duration: 0.7, ease: 'power3.inOut', delay: i * 0.1 });
+  var cards = gsap.utils.toArray('[data-gsap="feature"]');
+  cards.forEach(function (card, i) {
+    gsap.from(card, {
+      scrollTrigger: { trigger: card, start: 'top bottom-=80', toggleActions: 'play reverse play reverse' },
+      y: 24,
+      opacity: 0,
+      scale: 0.97,
+      filter: 'blur(4px)',
+      duration: 0.5,
+      ease: 'power4.out',
+      delay: i * 0.08
+    });
   });
 }
 
@@ -119,7 +133,7 @@ function initStepsPipeline() {
     var circle = el.querySelector('.rounded-full');
     var heading = el.querySelector(':scope > h3');
     var desc = el.querySelector(':scope > p');
-    var tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 85%', end: 'top 40%', scrub: 1 } });
+    var tl = gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 75%', end: 'top 30%', scrub: 1 } });
     tl.from(circle, { scale: 0, duration: 0.3 });
     tl.to(circle, { borderColor: 'var(--color-primary-500)', backgroundColor: 'var(--color-primary-500)', color: 'var(--color-bg)', duration: 0.2 }, '-=0.05');
     if (heading) tl.from(heading, { y: 24, opacity: 0, duration: 0.25 }, '-=0.1');
@@ -183,22 +197,6 @@ function initBgParallax() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   10. MOBILE MENU
-   ═══════════════════════════════════════════════════════════════ */
-function initMobileMenu() {
-  var menu = document.querySelector('[data-mobile-menu]');
-  if (!menu) return;
-  var links = menu.querySelectorAll('a');
-  var tl = gsap.timeline({ paused: true, reversed: true });
-  tl.set(menu, { display: 'flex' });
-  tl.from(menu, { opacity: 0, y: -12, scale: 0.96, duration: 0.25, ease: 'power3.out' });
-  tl.from(links, { opacity: 0, y: 16, duration: 0.3, ease: 'power2.out', stagger: 0.06 }, '-=0.1');
-  window.__openMobileMenu = function () { if (tl.reversed()) { tl.play(); document.body.style.overflow = 'hidden'; } };
-  window.__closeMobileMenu = function () { if (!tl.reversed()) { tl.reverse(); document.body.style.overflow = ''; } };
-  window.__toggleMobileMenu = function () { tl.reversed() ? window.__openMobileMenu() : window.__closeMobileMenu(); };
-}
-
-/* ═══════════════════════════════════════════════════════════════
    BOOT
    ═══════════════════════════════════════════════════════════════ */
 function ready(fn) { if (document.readyState !== 'loading') { fn(); } else { document.addEventListener('DOMContentLoaded', fn); } }
@@ -220,7 +218,6 @@ ready(function () {
   initFaqAccordion();
   initMagneticButtons();
   initBgParallax();
-  initMobileMenu();
 
   /* Patch i18n toggle to re-split hero after lang change */
   var origToggle = window.__toggleLang;

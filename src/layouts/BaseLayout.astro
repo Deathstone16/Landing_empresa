@@ -76,8 +76,10 @@ const {
       })();
     </script>
 
-    <script src="/src/scripts/i18n.js" defer></script>
-    <script src="/src/scripts/gsap.js" type="module" defer></script>
+    <script>
+      import '/src/scripts/i18n.js';
+      import '/src/scripts/gsap.js';
+    </script>
   </head>
   <body class="antialiased">
     <div data-bg-grid class="bg-grid" aria-hidden="true" />

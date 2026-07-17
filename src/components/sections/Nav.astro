@@ -54,8 +54,8 @@ const navLinks = [
       <button id="lang-toggle-mobile" class="p-2 rounded-lg text-text-primary/60 hover:text-primary-500 transition-all duration-200 text-xs font-semibold uppercase tracking-wider" type="button" data-i18n="lang.toggle" aria-label="Toggle language">
         EN
       </button>
-      <button class="p-2 rounded-full hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+      <button class="p-2 rounded-lg hover:bg-surface-secondary transition-colors duration-200 text-text-primary" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
           <line x1="4" x2="20" y1="7" y2="7" />
           <line x1="4" x2="20" y1="12" y2="12" />
           <line x1="4" x2="20" y1="17" y2="17" />
@@ -64,7 +64,7 @@ const navLinks = [
     </div>
   </nav>
 
-  <div id="mobile-menu" class="md:hidden fixed top-20 left-4 right-4 z-40 bg-surface border border-border rounded-2xl flex-col items-center justify-center hidden" data-mobile-menu style="animation: mobile-menu-in 300ms cubic-bezier(0.16, 1, 0.3, 1) both;">
+  <div id="mobile-menu" class="md:hidden fixed top-[72px] left-4 right-4 z-40 bg-surface border border-border/80 rounded-2xl flex-col items-center justify-center shadow-lg hidden" data-mobile-menu>
     <button class="absolute top-3 right-3 p-3 rounded-full hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Cerrar menú" data-menu-close>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
         <path d="M18 6L6 18M6 6l12 12" />
@@ -104,6 +104,7 @@ const navLinks = [
   const openMenu = () => {
     isOpen = true;
     menu.classList.remove('hidden');
+    menu.classList.add('mobile-menu-open');
     document.body.style.overflow = 'hidden';
     toggle?.setAttribute('aria-expanded', 'true');
     closeBtn?.focus();

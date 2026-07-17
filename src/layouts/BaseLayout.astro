@@ -44,7 +44,8 @@ const {
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400..600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400..600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:opsz,wght@14..32,400..600&display=swap" rel="stylesheet" /></noscript>
 
     <script type="application/ld+json" id="json-ld" set:html={JSON.stringify({
       "@context": "https://schema.org",
@@ -74,7 +75,7 @@ const {
       })();
     </script>
 
-    <script src="/src/scripts/i18n.js"></script>
+    <script src="/src/scripts/i18n.js" defer></script>
   </head>
   <body class="antialiased">
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>

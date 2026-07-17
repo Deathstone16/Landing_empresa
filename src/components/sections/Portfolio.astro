@@ -1,6 +1,5 @@
 ---
 import SectionHeading from '../ui/SectionHeading.astro';
-import ScrollReveal from '../ui/ScrollReveal.astro';
 
 interface Project {
   title: string;
@@ -37,15 +36,15 @@ const projects: Project[] = [
 
 <section id="portfolio" class="py-20 md:py-28 bg-bg" aria-label="Trabajos seleccionados">
   <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-10">
-    <ScrollReveal type="fade-up">
+    <div data-gsap="heading">
       <SectionHeading subtitleHtml="Proyectos <span class=&quot;text-primary-500&quot;>reales</span>, <span class=&quot;text-primary-500&quot;>resultados concretos</span>." titleKey="portfolio.title" subtitleKey="portfolio.subtitle">
         Trabajos seleccionados
       </SectionHeading>
-    </ScrollReveal>
+    </div>
 
-    <div class="grid md:grid-cols-3 gap-8 md:gap-10">
-      {projects.map((project, i) => (
-        <article class="group relative overflow-hidden rounded-lg border border-border/60 bg-surface hover:border-primary-500/30 transition-all duration-700 reveal-scale-in" style={`transition-delay: ${i * 150}ms`}>
+    <div class="grid md:grid-cols-3 gap-8 md:gap-10" style="perspective: 1200px">
+      {projects.map((project) => (
+        <article data-tilt class="group relative overflow-hidden rounded-lg border border-border/60 bg-surface hover:border-primary-500/30 transition-all duration-700">
           <div class={`aspect-[4/3] bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" class="text-primary-500/20 group-hover:text-primary-500/40 group-hover:scale-110 transition-all duration-500" aria-hidden="true">
               <path d={project.icon} />

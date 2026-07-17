@@ -299,20 +299,9 @@ body {
 .animate-whatsapp-in   { animation: whatsapp-in 600ms var(--ease-out-expo) 300ms both; }
 .animate-whatsapp-float { animation: whatsapp-float 4s ease-in-out infinite; }
 
-/* ── FAQ smooth open/close ── */
-.faq-content {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows 400ms var(--ease-out-strong);
-}
-
-.faq-content > div {
-  overflow: hidden;
-}
-
-details[open] .faq-content {
-  grid-template-rows: 1fr;
-}
+/* ── FAQ smooth open/close (GSAP) ── */
+.faq-content { display: none; overflow: hidden; }
+.faq-content > div { overflow: hidden; }
 
 .section-divider {
   display: flex;
@@ -339,6 +328,22 @@ details[open] .faq-content {
   background: var(--color-primary-500);
   opacity: 0.4;
   transform: rotate(45deg);
+}
+
+/* ── Hero split-text ── */
+.hw { display: inline-block; overflow: hidden; vertical-align: top; }
+.hwi { display: inline-block; }
+
+/* ── Background grid ── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(139, 160, 192, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 160, 192, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
 }
 
 @media (prefers-reduced-motion: reduce) {

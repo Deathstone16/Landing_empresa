@@ -8,7 +8,7 @@ interface Props {
 }
 
 const {
-  title = 'Norware — Soluciones a problemas reales, implementadas con software',
+  title = 'Neadev — Soluciones a problemas reales, implementadas con software',
   description = 'Resolvemos problemas de negocio con software a medida. Automatización, integración y productos digitales con equipo senior y entregas predecibles.',
   ogImage = '/og-image.png',
 } = Astro.props;
@@ -22,12 +22,12 @@ const {
     <title data-i18n-html="seo.title">{title}</title>
     <meta name="description" content={description} data-i18n-html="seo.description" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://norware.dev/" />
+    <link rel="canonical" href="https://neadev.dev/" />
     <meta name="theme-color" content="#0C0D0E" media="(prefers-color-scheme: dark)" />
     <meta name="theme-color" content="#F0F1F3" media="(prefers-color-scheme: light)" />
 
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://norware.dev/" />
+    <meta property="og:url" content="https://neadev.dev/" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
@@ -50,19 +50,19 @@ const {
     <script type="application/ld+json" id="json-ld" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": "Organization",
-      "name": "Norware",
-      "url": "https://norware.dev",
-      "logo": "https://norware.dev/favicon.svg",
+      "name": "Neadev",
+      "url": "https://neadev.dev",
+      "logo": "https://neadev.dev/favicon.svg",
       "description": "Resolvemos problemas de negocio con software a medida. Automatización, integración y productos digitales con equipo senior y entregas predecibles.",
       "foundingDate": "2024",
       "contactPoint": {
         "@type": "ContactPoint",
         "contactType": "sales",
-        "email": "hello@norware.dev"
+        "email": "hello@neadev.dev"
       },
       "sameAs": [
-        "https://github.com/norware",
-        "https://linkedin.com/company/norware"
+        "https://github.com/neadev",
+        "https://linkedin.com/company/neadev"
       ]
     })} />
 
@@ -77,8 +77,10 @@ const {
     </script>
 
     <script src="/src/scripts/i18n.js" defer></script>
+    <script src="/src/scripts/gsap.js" type="module" defer></script>
   </head>
   <body class="antialiased">
+    <div data-bg-grid class="bg-grid" aria-hidden="true" />
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
     <slot />
   </body>

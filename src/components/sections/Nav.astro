@@ -13,7 +13,7 @@ const navLinks = [
         <rect width="28" height="28" rx="6" fill="currentColor" class="text-primary-500"/>
         <path d="M8 20V8h4l4 6 4-6h4v12h-4V14l-4 6-4-6v6H8z" fill="currentColor" class="text-bg"/>
       </svg>
-      Norware
+      Neadev
     </a>
 
     <div class="hidden md:flex items-center gap-1">
@@ -64,19 +64,19 @@ const navLinks = [
     </div>
   </nav>
 
-  <div id="mobile-menu" class="md:hidden fixed top-[72px] left-4 right-4 z-40 bg-surface border border-border/80 rounded-2xl flex-col items-center justify-center shadow-lg hidden" data-mobile-menu>
+  <div id="mobile-menu" class="md:hidden fixed top-[72px] left-4 right-4 z-40 bg-surface border border-border/80 rounded-2xl flex-col items-center justify-center shadow-lg" data-mobile-menu style="display: none;">
     <button class="absolute top-3 right-3 p-3 rounded-full hover:bg-surface-secondary transition-colors duration-200" type="button" aria-label="Cerrar menú" data-menu-close>
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
         <path d="M18 6L6 18M6 6l12 12" />
       </svg>
     </button>
     <nav class="flex flex-col items-center gap-8">
-      {navLinks.map((link, i) => (
-        <a href={link.href} class="text-2xl font-heading font-normal text-text-primary/80 hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n={link.i18n} style={`animation: mobile-menu-link-in 400ms cubic-bezier(0.16, 1, 0.3, 1) ${i * 100 + 50}ms both;`}>
+      {navLinks.map((link) => (
+        <a href={link.href} class="text-2xl font-heading font-normal text-text-primary/80 hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n={link.i18n}>
           {link.label}
         </a>
       ))}
-      <a href="#contact" class="mt-4 inline-flex items-center px-6 py-3 text-base font-semibold rounded-lg bg-primary-500 text-white btn-glow hover:bg-primary-600 active:scale-[0.97] transition-all duration-200 no-underline" data-i18n="nav.empezar" style="animation: mobile-menu-link-in 400ms cubic-bezier(0.16, 1, 0.3, 1) 250ms both;">
+      <a href="#contact" class="mt-4 inline-flex items-center px-6 py-3 text-base font-semibold rounded-lg bg-primary-500 text-white btn-glow hover:bg-primary-600 active:scale-[0.97] transition-all duration-200 no-underline" data-i18n="nav.empezar">
         Empezar un proyecto
       </a>
     </nav>
@@ -86,9 +86,7 @@ const navLinks = [
 <script>
   const nav = document.querySelector('[data-nav]');
   const toggle = document.querySelector('[data-menu-toggle]');
-  const menu = document.querySelector('[data-mobile-menu]');
   const closeBtn = document.querySelector('[data-menu-close]');
-  let isOpen = false;
 
   const updateNavBorder = () => {
     if (window.scrollY > 50) {
@@ -101,31 +99,32 @@ const navLinks = [
   window.addEventListener('scroll', updateNavBorder, { passive: true });
   updateNavBorder();
 
-  const openMenu = () => {
-    isOpen = true;
-    menu.classList.remove('hidden');
-    menu.classList.add('mobile-menu-open');
-    document.body.style.overflow = 'hidden';
-    toggle?.setAttribute('aria-expanded', 'true');
-    closeBtn?.focus();
-  };
-
-  const closeMenu = () => {
-    isOpen = false;
-    menu.classList.add('hidden');
-    document.body.style.overflow = '';
-    toggle?.setAttribute('aria-expanded', 'false');
-    toggle?.focus();
-  };
-
-  toggle?.addEventListener('click', openMenu);
-  closeBtn?.addEventListener('click', closeMenu);
-  window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && isOpen) closeMenu();
+  toggle?.addEventListener('click', () => {
+    window.__toggleMobileMenu?.();
+    const expanded = toggle.getAttribute('aria-expanded') === 'true';
+    toggle.setAttribute('aria-expanded', String(!expanded));
   });
 
+  closeBtn?.addEventListener('click', () => {
+    window.__closeMobileMenu?.();
+    toggle?.setAttribute('aria-expanded', 'false');
+    toggle?.focus();
+  });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') {
+      window.__closeMobileMenu?.();
+      toggle?.setAttribute('aria-expanded', 'false');
+      toggle?.focus();
+    }
+  });
+
+  const menu = document.querySelector('[data-mobile-menu]');
   menu?.querySelectorAll('a').forEach((link) => {
-    link.addEventListener('click', closeMenu);
+    link.addEventListener('click', () => {
+      window.__closeMobileMenu?.();
+      toggle?.setAttribute('aria-expanded', 'false');
+    });
   });
 
   const toggleTheme = () => {

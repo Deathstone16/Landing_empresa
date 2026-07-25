@@ -1,107 +1,110 @@
 ---
-import SectionHeading from '../ui/SectionHeading.astro';
-
-const features = [
-  {
-    title: 'Diagnóstico y estrategia',
-    description: 'Entendemos tu negocio, identificamos los cuellos de botella y definimos la solución óptima — antes de escribir una sola línea de código.',
-    i18nTitle: 'services.feature1.title',
-    i18nDesc: 'services.feature1.desc',
-  },
-  {
-    title: 'Implementación pragmática',
-    description: 'Construimos la solución con las herramientas correctas para tu problema, no con las que están de moda. Sin sobreingeniería, sin vueltas.',
-    i18nTitle: 'services.feature2.title',
-    i18nDesc: 'services.feature2.desc',
-  },
-  {
-    title: 'Entrega y evolución',
-    description: 'Lanzamos, monitoreamos y mejoramos continuamente. El software es el medio; la solución a tu problema es el fin.',
-    i18nTitle: 'services.feature3.title',
-    i18nDesc: 'services.feature3.desc',
-  },
-];
-
-const steps = [
+const services = [
   {
     number: '01',
-    title: 'Entendemos el problema',
-    description: 'Analizamos tu negocio, usuarios y objetivos. Definimos alcance, timeline y presupuesto antes de empezar.',
-    i18nTitle: 'services.step1.title',
-    i18nDesc: 'services.step1.desc',
+    title: 'Automatizaciones con IA',
+    description: 'Chatbots, asistentes y flujos que resuelven tareas repetitivas sin sumar complejidad a tu equipo.',
+    titleKey: 'services.feature1.title',
+    descriptionKey: 'services.feature1.desc',
+    paths: ['M8 9h8M8 13h5', 'M9 3h6l1 3h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2l1-3Z', 'M9 19v2m6-2v2'],
   },
   {
     number: '02',
-    title: 'Diseñamos la solución',
-    description: 'Sprints ágiles con demos semanales. Validamos cada decisión con vos antes de avanzar a la siguiente etapa.',
-    i18nTitle: 'services.step2.title',
-    i18nDesc: 'services.step2.desc',
+    title: 'Integraciones y procesos',
+    description: 'Conectamos las herramientas que ya usás para que la información deje de viajar a mano.',
+    titleKey: 'services.feature2.title',
+    descriptionKey: 'services.feature2.desc',
+    paths: ['M7 7h10v10H7z', 'M3 3h5v5H3zM16 16h5v5h-5z', 'M8 5h5a4 4 0 0 1 4 4v7'],
   },
   {
     number: '03',
-    title: 'Implementamos y evolucionamos',
-    description: 'Deploy, monitoreo y soporte continuo. La solución crece con tu negocio — no desaparecemos después del launch.',
-    i18nTitle: 'services.step3.title',
-    i18nDesc: 'services.step3.desc',
+    title: 'Diagnóstico y estrategia',
+    description: 'Detectamos cuellos de botella y definimos qué conviene construir antes de invertir.',
+    titleKey: 'services.feature3.title',
+    descriptionKey: 'services.feature3.desc',
+    paths: ['M4 18 9 13l4 3 7-9', 'M15 7h5v5'],
+  },
+  {
+    number: '04',
+    title: 'Plataformas digitales',
+    description: 'Productos web y SaaS sólidos, claros y preparados para crecer con tu operación.',
+    titleKey: 'services.feature4.title',
+    descriptionKey: 'services.feature4.desc',
+    paths: ['M4 5h16v11H4z', 'M9 20h6M12 16v4'],
+  },
+  {
+    number: '05',
+    title: 'Software a medida',
+    description: 'Construimos la herramienta que tu proceso necesita cuando las soluciones genéricas ya no alcanzan.',
+    titleKey: 'services.feature5.title',
+    descriptionKey: 'services.feature5.desc',
+    paths: ['m8 9-3 3 3 3m8-6 3 3-3 3', 'm14 5-4 14'],
+  },
+  {
+    number: '06',
+    title: 'Soporte y evolución',
+    description: 'Mantenemos, medimos y mejoramos el sistema para que no quede obsoleto después del lanzamiento.',
+    titleKey: 'services.feature6.title',
+    descriptionKey: 'services.feature6.desc',
+    paths: ['M14.7 6.3a4 4 0 0 0-5 5L3.5 17.5a2.1 2.1 0 0 0 3 3l6.2-6.2a4 4 0 0 0 5-5l-2.4 2.4-3-3 2.4-2.4Z'],
   },
 ];
 ---
 
-<section id="services" class="py-20 md:py-28 bg-surface-secondary" aria-label="Servicios">
-  <div class="max-w-7xl mx-auto px-5 md:px-8 lg:px-10">
-    <div data-gsap="heading">
-      <SectionHeading subtitleHtml="Identificamos el <span class=&quot;text-primary-500&quot;>desafío</span>, diseñamos la <span class=&quot;text-primary-500&quot;>solución</span>, la implementamos con <span class=&quot;text-primary-500&quot;>software</span>." titleKey="services.title" subtitleKey="services.subtitle">
-        <span class="text-primary-500">Problemas</span> que resolvemos
-      </SectionHeading>
-    </div>
+<section id="services" class="services-section" aria-labelledby="services-title" data-services>
+  <div class="services-shell">
+    <header class="services-heading">
+      <p class="services-eyebrow" data-services-eyebrow>
+        <span class="services-eyebrow-line" aria-hidden="true"></span>
+        <span data-i18n="services.eyebrow">Lo que hacemos</span>
+        <span class="services-eyebrow-index">/ 02</span>
+      </p>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      {features.map((feature) => (
-        <article data-gsap="feature" class="bg-surface border border-border/60 rounded-lg p-8 hover:border-primary-500/30 hover:-translate-y-0.5 transition-all duration-500">
-          <div class="w-10 h-10 rounded-lg bg-primary-500/10 flex items-center justify-center mb-5">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" class="text-primary-500" aria-hidden="true">
-              <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+      <h2 id="services-title" class="services-title" data-services-title data-i18n-html="services.title">
+        Impulsamos ideas que
+        <span>hacen la diferencia.</span>
+      </h2>
+
+      <p class="services-intro" data-services-intro data-i18n="services.subtitle">
+        Seis formas concretas de sacar trabajo manual del medio y convertirlo en sistemas que tu equipo pueda usar de verdad.
+      </p>
+    </header>
+
+    <div class="services-grid" data-services-grid>
+      {services.map((service, index) => (
+        <article class="service-card" data-service-card style={`--service-order: ${index}`}>
+          <div class="service-card-top">
+            <span class="service-number">{service.number}</span>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" data-service-icon>
+                {service.paths.map((path) => <path d={path} />)}
+              </svg>
+            </span>
+          </div>
+
+          <div class="service-card-copy">
+            <h3 data-i18n={service.titleKey}>{service.title}</h3>
+            <p data-i18n={service.descriptionKey}>{service.description}</p>
+          </div>
+
+          <div class="service-card-edge" aria-hidden="true">
+            <span></span>
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M3 9h12M10 4l5 5-5 5" />
             </svg>
           </div>
-          <h3 class="font-heading text-lg font-normal tracking-[-0.01em] text-text-primary mb-3" data-i18n={feature.i18nTitle}>{feature.title}</h3>
-          <p class="text-sm text-text-secondary leading-relaxed" data-i18n={feature.i18nDesc}>{feature.description}</p>
         </article>
       ))}
     </div>
 
-    <div class="mt-32 md:mt-44">
-      <div data-gsap="divider" class="section-divider mb-4 md:mb-6">
-        <span class="section-divider-mark" />
-      </div>
-
-      <div data-gsap="heading">
-        <p class="font-heading text-2xl md:text-3xl font-normal tracking-[-0.02em] text-text-primary text-center mb-6 pt-24 md:pt-36" data-i18n="services.heading2">
-          De principio a fin, sin vueltas
-        </p>
-        <p class="text-text-secondary text-center mb-20 md:mb-28 max-w-md mx-auto" data-i18n="services.sub2">
-          Tres fases claras desde que identificamos el problema hasta que la solución está funcionando.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8 md:gap-12 relative">
-        <div data-gsap="pipeline-line" class="hidden md:block absolute top-10 left-[calc(16.66%+1rem)] right-[calc(16.66%+1rem)] h-px bg-gradient-to-r from-primary-500/10 via-primary-500/30 to-primary-500/10 origin-left" aria-hidden="true" />
-
-        {steps.map((step) => (
-          <article data-gsap="step" class="relative text-center md:text-left">
-            <div class="hidden md:flex mx-auto md:mx-0 w-12 h-12 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-500 font-mono font-bold text-sm items-center justify-center relative z-10 mb-6 transition-all duration-500 hover:bg-primary-500/20 hover:scale-110 hover:border-primary-500/40">
-              {step.number}
-            </div>
-            <div class="md:hidden flex items-center gap-4 mb-4">
-              <span class="w-8 h-8 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-500 font-mono font-bold text-xs flex items-center justify-center shrink-0">
-                {step.number}
-              </span>
-              <h3 class="font-heading text-xl font-normal text-text-primary" data-i18n={step.i18nTitle}>{step.title}</h3>
-            </div>
-            <h3 class="hidden md:block font-heading text-xl font-normal text-text-primary mb-3" data-i18n={step.i18nTitle}>{step.title}</h3>
-            <p class="text-sm text-text-secondary leading-relaxed" data-i18n={step.i18nDesc}>{step.description}</p>
-          </article>
-        ))}
-      </div>
+    <div class="services-closing" data-services-closing>
+      <p data-i18n="services.closing">No empezamos por la tecnología. Empezamos por lo que te está frenando.</p>
+      <a href="#contact" class="services-cta" data-magnetic>
+        <span data-i18n="services.cta">Contanos el problema</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.35" aria-hidden="true">
+          <path d="M3 9h12M10 4l5 5-5 5" />
+        </svg>
+      </a>
     </div>
   </div>
 </section>

@@ -1,182 +1,157 @@
 ---
+import BrandMark from '../ui/BrandMark.astro';
+
 const navLinks = [
-  { label: 'Trabajos', href: '#portfolio', i18n: 'nav.trabajos' },
   { label: 'Servicios', href: '#services', i18n: 'nav.servicios' },
+  { label: 'Proceso', href: '#process', i18n: 'nav.proceso' },
   { label: 'Contacto', href: '#contact', i18n: 'nav.contacto' },
 ];
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 px-4 pt-4 transition-all duration-300" id="nav" data-nav>
-  <nav class="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between h-14 bg-surface border border-border/80 rounded-full transition-all duration-300" aria-label="Principal">
-    <a href="/" class="flex items-center gap-2.5 no-underline font-heading font-normal text-xl text-text-primary hover:text-primary-500 transition-colors duration-200">
-      <svg width="32" height="32" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-        <rect width="28" height="28" rx="6" fill="currentColor" class="text-primary-500"/>
-        <path d="M8 20V8h4l4 6 4-6h4v12h-4V14l-4 6-4-6v6H8z" fill="currentColor" class="text-bg"/>
-      </svg>
-      Neadev
+<header class="site-nav" id="nav" data-nav>
+  <nav class="nav-shell" aria-label="Principal">
+    <a href="/" class="nav-brand" aria-label="Neadev — Inicio">
+      <BrandMark class="nav-brand-mark" />
+      <span class="nav-brand-name">NEADEV</span>
     </a>
 
-    <div class="hidden md:flex items-center gap-1">
-      {navLinks.map((link) => (
-        <a href={link.href} class="group relative px-5 py-2 text-sm font-medium tracking-[-0.01em] text-text-primary/75 hover:text-primary-500 transition-colors duration-200 no-underline" data-i18n={link.i18n}>
-          {link.label}
-          <span class="absolute -bottom-1 left-4 right-4 h-0.5 bg-primary-500 rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-        </a>
-      ))}
-      <a href="#contact" class="ml-3 inline-flex items-center px-5 py-2 text-sm font-semibold tracking-[-0.01em] rounded-full bg-primary-500 text-bg hover:bg-primary-300 active:scale-[0.98] transition-all duration-200 no-underline" data-i18n="nav.empezar">
-        Hablemos
-      </a>
+    <div class="nav-desktop">
+      <div class="nav-links">
+        {navLinks.map((link) => (
+          <a href={link.href} class="nav-link" data-i18n={link.i18n}>
+            {link.label}
+          </a>
+        ))}
+      </div>
 
-      <button id="theme-toggle" class="ml-2 p-2 rounded-lg text-text-secondary/60 hover:text-primary-500 hover:bg-surface-secondary transition-all duration-200" type="button" aria-label="Cambiar modo claro">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="block light:hidden" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        </svg>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="hidden light:block" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
-      <button id="lang-toggle" class="ml-1 p-2 rounded-lg text-text-primary/60 hover:text-primary-500 hover:bg-surface-secondary transition-all duration-200 text-xs font-semibold uppercase tracking-wider" type="button" data-i18n="lang.toggle" aria-label="Toggle language">
-        EN
-      </button>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="nav-icon-button" type="button" aria-label="Cambiar modo claro" title="Cambiar tema">
+          <svg class="block light:hidden" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+          </svg>
+          <svg class="hidden light:block" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.5 13.2A8.5 8.5 0 1 1 10.8 3.5a6.5 6.5 0 0 0 9.7 9.7Z" />
+          </svg>
+        </button>
+        <button id="lang-toggle" class="nav-language" type="button" data-i18n="lang.toggle" aria-label="Cambiar idioma">EN</button>
+        <a href="#contact" class="nav-cta" data-i18n="nav.empezar">Hablemos</a>
+      </div>
     </div>
 
-    <div class="flex md:hidden items-center gap-2">
-      <button id="theme-toggle-mobile" class="p-2 rounded-lg text-text-secondary/60 hover:text-primary-500 transition-all duration-200" type="button" aria-label="Cambiar modo claro">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="block light:hidden" aria-hidden="true">
-          <circle cx="12" cy="12" r="5"/>
-          <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-        </svg>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="hidden light:block" aria-hidden="true">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
-      <button id="lang-toggle-mobile" class="p-2 rounded-lg text-text-primary/60 hover:text-primary-500 transition-all duration-200 text-xs font-semibold uppercase tracking-wider" type="button" data-i18n="lang.toggle" aria-label="Toggle language">
-        EN
-      </button>
-      <button class="p-2 rounded-lg hover:bg-surface-secondary transition-colors duration-200 text-text-primary" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-          <line x1="4" x2="20" y1="7" y2="7" />
-          <line x1="4" x2="20" y1="12" y2="12" />
-          <line x1="4" x2="20" y1="17" y2="17" />
-        </svg>
-      </button>
-    </div>
+    <button class="nav-menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <div id="mobile-backdrop" data-mobile-backdrop aria-hidden="true"></div>
 
-  <div id="mobile-menu" class="md:hidden" data-mobile-menu style="display: none;">
+  <div id="mobile-menu" data-mobile-menu style="display: none;" aria-hidden="true">
     <div class="mobile-menu-header">
-      <span class="text-[11px] font-mono tracking-[0.18em] uppercase text-text-tertiary">Navegación</span>
-      <button class="p-2 rounded-lg text-text-secondary hover:text-primary-500 hover:bg-surface-secondary transition-all duration-200" type="button" aria-label="Cerrar menú" data-menu-close>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-          <path d="M18 6L6 18M6 6l12 12" />
+      <span class="mobile-menu-label">Navegación / 01</span>
+      <button class="mobile-menu-close" type="button" aria-label="Cerrar menú" data-menu-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12" />
         </svg>
       </button>
     </div>
 
-    <nav class="flex flex-col px-6 py-1">
-      {navLinks.map((link, i) => (
-        <a href={link.href} class="mobile-nav-link" style={`--i: ${i}`} data-i18n={link.i18n}>
-          {link.label}
+    <nav class="mobile-menu-links" aria-label="Navegación móvil">
+      {navLinks.map((link, index) => (
+        <a href={link.href} class="mobile-nav-link" style={`--i: ${index}`}>
+          <span class="mobile-nav-index">0{index + 1}</span>
+          <span data-i18n={link.i18n}>{link.label}</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <path d="M4 10h12M11 5l5 5-5 5" />
+          </svg>
         </a>
       ))}
     </nav>
 
     <div class="mobile-menu-footer">
-      <a href="#contact" class="mobile-cta" data-i18n="nav.empezar">Empezar un proyecto</a>
-      <a href="mailto:hello@neadev.dev" class="mobile-menu-email">hello@neadev.dev</a>
+      <div class="mobile-menu-settings">
+        <button id="theme-toggle-mobile" class="mobile-setting" type="button" aria-label="Cambiar modo claro">Cambiar tema</button>
+        <button id="lang-toggle-mobile" class="mobile-setting" type="button" data-i18n="lang.toggle" aria-label="Cambiar idioma">EN</button>
+      </div>
+      <a href="#contact" class="mobile-cta" data-i18n="nav.empezar">Hablemos</a>
+      <a href="mailto:neadevar@gmail.com" class="mobile-menu-email">neadevar@gmail.com</a>
     </div>
   </div>
 </header>
 
 <script>
-  const nav = document.querySelector('[data-nav]');
-  const toggle = document.querySelector('[data-menu-toggle]');
-  const closeBtn = document.querySelector('[data-menu-close]');
-  const menu = document.querySelector('[data-mobile-menu]');
-  const backdrop = document.querySelector('[data-mobile-backdrop]');
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const backdrop = document.querySelector<HTMLElement>('[data-mobile-backdrop]');
+  let previousOverflow = '';
 
-  const updateNavBorder = () => {
-    if (window.scrollY > 50) {
-      nav.style.borderBottomColor = 'var(--color-border)';
-    } else {
-      nav.style.borderBottomColor = 'var(--color-border-light)';
-    }
+  const updateNav = () => {
+    nav?.classList.toggle('is-scrolled', window.scrollY > 24);
   };
 
-  window.addEventListener('scroll', updateNavBorder, { passive: true });
-  updateNavBorder();
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
 
   function openMobileMenu() {
+    if (!menu || !backdrop || !toggle) return;
+    previousOverflow = document.body.style.overflow;
     backdrop.style.display = 'block';
     menu.style.display = 'flex';
     document.body.style.overflow = 'hidden';
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        backdrop.classList.add('open');
-        menu.classList.add('open');
-      });
-    });
+    menu.setAttribute('aria-hidden', 'false');
     toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Cerrar menú');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      backdrop.classList.add('open');
+      menu.classList.add('open');
+    }));
   }
 
-  function closeMobileMenu() {
+  function closeMobileMenu({ restoreFocus = false } = {}) {
+    if (!menu || !backdrop || !toggle) return;
     backdrop.classList.remove('open');
     menu.classList.remove('open');
-    setTimeout(function () {
+    menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+    document.body.style.overflow = previousOverflow;
+    window.setTimeout(() => {
       if (!menu.classList.contains('open')) {
         menu.style.display = 'none';
         backdrop.style.display = 'none';
       }
-    }, 350);
-    document.body.style.overflow = '';
-    toggle.setAttribute('aria-expanded', 'false');
+    }, 420);
+    if (restoreFocus) toggle.focus();
   }
 
-  toggle?.addEventListener('click', function () {
-    var isOpen = toggle.getAttribute('aria-expanded') === 'true';
-    if (isOpen) {
-      closeMobileMenu();
-    } else {
-      openMobileMenu();
+  toggle?.addEventListener('click', () => {
+    if (toggle.getAttribute('aria-expanded') === 'true') closeMobileMenu();
+    else openMobileMenu();
+  });
+
+  closeButton?.addEventListener('click', () => closeMobileMenu({ restoreFocus: true }));
+  backdrop?.addEventListener('click', () => closeMobileMenu());
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMobileMenu()));
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closeMobileMenu({ restoreFocus: true });
     }
-  });
-
-  closeBtn?.addEventListener('click', function () {
-    closeMobileMenu();
-    toggle?.focus();
-  });
-
-  window.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') {
-      closeMobileMenu();
-      toggle?.focus();
-    }
-  });
-
-  menu?.querySelectorAll('a').forEach(function (link) {
-    link.addEventListener('click', function () {
-      closeMobileMenu();
-    });
-  });
-
-  backdrop?.addEventListener('click', function () {
-    closeMobileMenu();
   });
 
   function toggleTheme() {
-    var html = document.documentElement;
-    var isLight = html.classList.toggle('light');
+    const isLight = document.documentElement.classList.toggle('light');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
   }
 
-  document.querySelectorAll('#theme-toggle, #theme-toggle-mobile').forEach(function (btn) {
-    btn.addEventListener('click', toggleTheme);
+  document.querySelectorAll('#theme-toggle, #theme-toggle-mobile').forEach((button) => {
+    button.addEventListener('click', toggleTheme);
   });
 
-  document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach(function (btn) {
-    btn.addEventListener('click', window.__toggleLang);
+  document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach((button) => {
+    button.addEventListener('click', () => window.__toggleLang?.());
   });
 </script>

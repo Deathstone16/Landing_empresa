@@ -1,0 +1,70 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Exploración estratégica',
+    description: 'Analizamos tu operación, detectamos oportunidades y definimos objetivos claros antes de proponer una solución.',
+    titleKey: 'process.step1.title',
+    descriptionKey: 'process.step1.desc',
+  },
+  {
+    number: '02',
+    title: 'Diseño de solución',
+    description: 'Traducimos el problema en una arquitectura clara, priorizada y lista para validar con tu equipo.',
+    titleKey: 'process.step2.title',
+    descriptionKey: 'process.step2.desc',
+  },
+  {
+    number: '03',
+    title: 'Desarrollo y entrega',
+    description: 'Construimos por etapas, mostramos avances y medimos cada decisión contra el objetivo definido.',
+    titleKey: 'process.step3.title',
+    descriptionKey: 'process.step3.desc',
+  },
+  {
+    number: '04',
+    title: 'Acompañamiento',
+    description: 'Lanzamos, monitoreamos y mejoramos para que la solución siga creciendo junto con tu negocio.',
+    titleKey: 'process.step4.title',
+    descriptionKey: 'process.step4.desc',
+  },
+];
+---
+
+<section id="process" class="process-section" aria-labelledby="process-title" data-process>
+  <div class="process-shell">
+    <header class="process-heading">
+      <p class="process-eyebrow" data-process-eyebrow>
+        <span class="process-eyebrow-line" aria-hidden="true"></span>
+        <span data-i18n="process.eyebrow">Cómo trabajamos</span>
+        <span class="process-eyebrow-index">/ 03</span>
+      </p>
+
+      <h2 id="process-title" class="process-title" data-process-title data-i18n-html="process.title">
+        Nos enfocamos estratégicamente <span>en cada paso.</span>
+      </h2>
+    </header>
+
+    <div class="process-track" data-process-track>
+      <span class="process-line" data-process-line aria-hidden="true"></span>
+
+      {steps.map((step, index) => (
+        <article class="process-card" data-process-card data-step={step.number} style={`--process-order: ${index}`}>
+          <div class="process-card-top">
+            <span class="process-number">{step.number}</span>
+            <span class="process-node" aria-hidden="true"><span></span></span>
+          </div>
+
+          <div class="process-card-copy">
+            <h3 data-i18n={step.titleKey}>{step.title}</h3>
+            <p data-i18n={step.descriptionKey}>{step.description}</p>
+          </div>
+
+          <svg class="process-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M3 10h14M12 5l5 5-5 5" />
+          </svg>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

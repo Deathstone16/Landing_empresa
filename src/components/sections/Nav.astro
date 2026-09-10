@@ -1,0 +1,131 @@
+---
+import BrandMark from '../ui/BrandMark.astro';
+
+const navLinks = [
+  { label: 'Servicios', href: '#services', i18n: 'nav.servicios' },
+  { label: 'Proceso', href: '#process', i18n: 'nav.proceso' },
+  { label: 'Contacto', href: '#contact', i18n: 'nav.contacto' },
+];
+---
+
+<header class="site-nav" id="nav" data-nav>
+  <nav class="nav-shell" aria-label="Principal">
+    <a href="/" class="nav-brand" aria-label="Neadev — Inicio">
+      <BrandMark class="nav-brand-mark" />
+      <span class="nav-brand-name">NEADEV</span>
+    </a>
+
+    <div class="nav-desktop">
+      <div class="nav-links">
+        {navLinks.map((link) => (
+          <a href={link.href} class="nav-link">
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <div class="nav-actions">
+        <a href="#contact" class="nav-cta">Hablemos</a>
+      </div>
+    </div>
+
+    <button class="nav-menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <div id="mobile-backdrop" data-mobile-backdrop aria-hidden="true"></div>
+
+  <div id="mobile-menu" data-mobile-menu style="display: none;" aria-hidden="true">
+    <div class="mobile-menu-header">
+      <span class="mobile-menu-label">Navegación / 01</span>
+      <button class="mobile-menu-close" type="button" aria-label="Cerrar menú" data-menu-close>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+          <path d="M18 6 6 18M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <nav class="mobile-menu-links" aria-label="Navegación móvil">
+      {navLinks.map((link, index) => (
+        <a href={link.href} class="mobile-nav-link" style={`--i: ${index}`}>
+          <span class="mobile-nav-index">0{index + 1}</span>
+          <span>{link.label}</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
+            <path d="M4 10h12M11 5l5 5-5 5" />
+          </svg>
+        </a>
+      ))}
+    </nav>
+
+    <div class="mobile-menu-footer">
+      <a href="#contact" class="mobile-cta">Hablemos</a>
+      <a href="mailto:neadevar@gmail.com" class="mobile-menu-email">neadevar@gmail.com</a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const nav = document.querySelector<HTMLElement>('[data-nav]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const closeButton = document.querySelector<HTMLButtonElement>('[data-menu-close]');
+  const menu = document.querySelector<HTMLElement>('[data-mobile-menu]');
+  const backdrop = document.querySelector<HTMLElement>('[data-mobile-backdrop]');
+  let previousOverflow = '';
+
+  const updateNav = () => {
+    nav?.classList.toggle('is-scrolled', window.scrollY > 24);
+  };
+
+  window.addEventListener('scroll', updateNav, { passive: true });
+  updateNav();
+
+  function openMobileMenu() {
+    if (!menu || !backdrop || !toggle) return;
+    previousOverflow = document.body.style.overflow;
+    backdrop.style.display = 'block';
+    menu.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    menu.setAttribute('aria-hidden', 'false');
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Cerrar menú');
+    requestAnimationFrame(() => requestAnimationFrame(() => {
+      backdrop.classList.add('open');
+      menu.classList.add('open');
+    }));
+  }
+
+  function closeMobileMenu({ restoreFocus = false } = {}) {
+    if (!menu || !backdrop || !toggle) return;
+    backdrop.classList.remove('open');
+    menu.classList.remove('open');
+    menu.setAttribute('aria-hidden', 'true');
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Abrir menú');
+    document.body.style.overflow = previousOverflow;
+    window.setTimeout(() => {
+      if (!menu.classList.contains('open')) {
+        menu.style.display = 'none';
+        backdrop.style.display = 'none';
+      }
+    }, 420);
+    if (restoreFocus) toggle.focus();
+  }
+
+  toggle?.addEventListener('click', () => {
+    if (toggle.getAttribute('aria-expanded') === 'true') closeMobileMenu();
+    else openMobileMenu();
+  });
+
+  closeButton?.addEventListener('click', () => closeMobileMenu({ restoreFocus: true }));
+  backdrop?.addEventListener('click', () => closeMobileMenu());
+  menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMobileMenu()));
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && toggle?.getAttribute('aria-expanded') === 'true') {
+      closeMobileMenu({ restoreFocus: true });
+    }
+  });
+
+</script>

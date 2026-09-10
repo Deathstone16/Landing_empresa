@@ -1,0 +1,83 @@
+---
+const services = [
+  {
+    number: '01',
+    title: 'Automatizaciones con IA',
+    description: 'Chatbots, asistentes y flujos que resuelven tareas repetitivas sin sumar complejidad a tu equipo.',
+    paths: ['M8 9h8M8 13h5', 'M9 3h6l1 3h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2l1-3Z', 'M9 19v2m6-2v2'],
+  },
+  {
+    number: '02',
+    title: 'Integraciones y procesos',
+    description: 'Conectamos las herramientas que ya usás para que la información deje de viajar a mano.',
+    paths: ['M7 7h10v10H7z', 'M3 3h5v5H3zM16 16h5v5h-5z', 'M8 5h5a4 4 0 0 1 4 4v7'],
+  },
+  {
+    number: '03',
+    title: 'Diagnóstico y estrategia',
+    description: 'Detectamos cuellos de botella y definimos qué conviene construir antes de invertir.',
+    paths: ['M4 18 9 13l4 3 7-9', 'M15 7h5v5'],
+  },
+  {
+    number: '04',
+    title: 'Plataformas digitales',
+    description: 'Productos web y SaaS sólidos, claros y preparados para crecer con tu operación.',
+    paths: ['M4 5h16v11H4z', 'M9 20h6M12 16v4'],
+  },
+  {
+    number: '05',
+    title: 'Software a medida',
+    description: 'Construimos la herramienta que tu proceso necesita cuando las soluciones genéricas ya no alcanzan.',
+    paths: ['m8 9-3 3 3 3m8-6 3 3-3 3', 'm14 5-4 14'],
+  },
+  {
+    number: '06',
+    title: 'Soporte y evolución',
+    description: 'Mantenemos, medimos y mejoramos el sistema para que no quede obsoleto después del lanzamiento.',
+    paths: ['M14.7 6.3a4 4 0 0 0-5 5L3.5 17.5a2.1 2.1 0 0 0 3 3l6.2-6.2a4 4 0 0 0 5-5l-2.4 2.4-3-3 2.4-2.4Z'],
+  },
+];
+---
+
+<section id="services" class="services-section" aria-labelledby="services-title" data-services>
+  <div class="services-shell">
+    <header class="services-heading">
+
+      <h2 id="services-title" class="services-title" data-services-title>
+        Impulsamos ideas que
+        <span>hacen la diferencia.</span>
+      </h2>
+
+      <p class="services-intro" data-services-intro>
+        Seis formas concretas de sacar trabajo manual del medio y convertirlo en sistemas que tu equipo pueda usar de verdad.
+      </p>
+    </header>
+
+    <div class="services-grid" data-services-grid>
+      {services.map((service, index) => (
+        <article class="service-card" data-service-card style={`--service-order: ${index}`}>
+          <div class="service-card-top">
+            <span class="service-number">{service.number}</span>
+            <span class="service-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" data-service-icon>
+                {service.paths.map((path) => <path d={path} />)}
+              </svg>
+            </span>
+          </div>
+
+          <div class="service-card-copy">
+            <h3>{service.title}</h3>
+            <p>{service.description}</p>
+          </div>
+
+          <div class="service-card-edge" aria-hidden="true">
+            <span></span>
+            <svg viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.2">
+              <path d="M3 9h12M10 4l5 5-5 5" />
+            </svg>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

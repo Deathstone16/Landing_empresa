@@ -1,0 +1,57 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Exploración estratégica',
+    description: 'Analizamos tu operación, detectamos oportunidades y definimos objetivos claros antes de proponer una solución.',
+  },
+  {
+    number: '02',
+    title: 'Diseño de solución',
+    description: 'Traducimos el problema en una arquitectura clara, priorizada y lista para validar con tu equipo.',
+  },
+  {
+    number: '03',
+    title: 'Desarrollo y entrega',
+    description: 'Construimos por etapas, mostramos avances y medimos cada decisión contra el objetivo definido.',
+  },
+  {
+    number: '04',
+    title: 'Acompañamiento',
+    description: 'Lanzamos, monitoreamos y mejoramos para que la solución siga creciendo junto con tu negocio.',
+  },
+];
+---
+
+<section id="process" class="process-section" aria-labelledby="process-title" data-process>
+  <div class="process-shell">
+    <header class="process-heading">
+
+      <h2 id="process-title" class="process-title" data-process-title>
+        Nos enfocamos estratégicamente <span>en cada paso.</span>
+      </h2>
+    </header>
+
+    <div class="process-track" data-process-track>
+      <span class="process-line" data-process-line aria-hidden="true"></span>
+
+      {steps.map((step, index) => (
+        <article class="process-card" data-process-card data-step={step.number} style={`--process-order: ${index}`}>
+          <div class="process-card-top">
+            <span class="process-number">{step.number}</span>
+            <span class="process-node" aria-hidden="true"><span></span></span>
+          </div>
+
+          <div class="process-card-copy">
+            <h3>{step.title}</h3>
+            <p>{step.description}</p>
+          </div>
+
+          <svg class="process-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            <path d="M3 10h14M12 5l5 5-5 5" />
+          </svg>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

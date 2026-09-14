@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Neadev — Soluciones a problemas reales, implementadas con software',
+  description = 'Resolvemos problemas de negocio con software a medida. Automatización, integración y productos digitales con equipo senior y entregas predecibles.',
+  ogImage = '/og-image.png',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://neadev.dev/" />
+    <meta name="theme-color" content="#F0F1F3" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://neadev.dev/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/favicon.svg?v=2" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@300..600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,ital,wght@9..144,0,300..600;9..144,1,300..600&family=JetBrains+Mono:wght@400;500&family=Sora:wght@300..600&display=swap" rel="stylesheet" /></noscript>
+
+    <script type="application/ld+json" id="json-ld" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Neadev",
+      "url": "https://neadev.dev",
+      "logo": "https://neadev.dev/favicon.svg",
+      "description": "Resolvemos problemas de negocio con software a medida. Automatización, integración y productos digitales con equipo senior y entregas predecibles.",
+      "foundingDate": "2024",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "sales",
+        "email": "neadevar@gmail.com",
+        "telephone": "+54 9 362 494-1613"
+      },
+      "sameAs": [
+        "https://www.instagram.com/neadev_ar/",
+        "https://wa.me/5493624941613"
+      ]
+    })} />
+
+    <script>
+      import '/src/scripts/gsap.js';
+    </script>
+  </head>
+  <body class="antialiased">
+    <div data-bg-grid class="bg-grid" aria-hidden="true" />
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    <slot />
+  </body>
+</html>

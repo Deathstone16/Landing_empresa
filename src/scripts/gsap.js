@@ -28,11 +28,6 @@ function initLenis() {
 /* ═══════════════════════════════════════════════════════════════
    2. HERO — Brand reveal, handoff and message reveal
    ═══════════════════════════════════════════════════════════════ */
-<<<<<<< HEAD
-function initFeatureReveal() {
-  var section = document.querySelector('[data-services]');
-  if (!section) return;
-=======
 function showHeroStatic() {
   var brand = document.querySelector('[data-hero-brand]');
   var message = document.querySelector('[data-hero-message]');
@@ -133,7 +128,6 @@ function initFeatureReveal() {
   if (!section) return;
 
   var eyebrow = section.querySelector('[data-services-eyebrow]');
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
   var title = section.querySelector('[data-services-title]');
   var intro = section.querySelector('[data-services-intro]');
   var cards = section.querySelectorAll('[data-service-card]');
@@ -146,11 +140,8 @@ function initFeatureReveal() {
       once: true
     }
   });
-<<<<<<< HEAD
-=======
 
   if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 14, duration: 0.45, ease: 'power3.out' });
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
   if (title) {
     tl.from(title, {
       opacity: 0,
@@ -188,11 +179,8 @@ function initFeatureReveal() {
 function initProcessReveal() {
   var section = document.querySelector('[data-process]');
   if (!section) return;
-<<<<<<< HEAD
-=======
 
   var eyebrow = section.querySelector('[data-process-eyebrow]');
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
   var title = section.querySelector('[data-process-title]');
   var line = section.querySelector('[data-process-line]');
   var cards = section.querySelectorAll('[data-process-card]');
@@ -204,11 +192,8 @@ function initProcessReveal() {
       once: true
     }
   });
-<<<<<<< HEAD
-=======
 
   if (eyebrow) tl.from(eyebrow, { opacity: 0, y: 14, duration: 0.45, ease: 'power3.out' });
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
   if (title) {
     tl.from(title, {
       opacity: 0,
@@ -282,20 +267,14 @@ function ready(fn) { if (document.readyState !== 'loading') { fn(); } else { doc
 
 ready(function () {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-<<<<<<< HEAD
-=======
     showHeroStatic();
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
     document.querySelectorAll('[data-gsap], [data-tilt], [data-magnetic]').forEach(function (el) { gsap.set(el, { opacity: 1, clipPath: 'none', transform: 'none', x: 0, y: 0 }); });
     return;
   }
 
   initLenis();
-<<<<<<< HEAD
-=======
   initCounter();
   initHeroSequence();
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
   initFeatureReveal();
   initProcessReveal();
   initMagneticButtons();

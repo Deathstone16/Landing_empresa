@@ -18,20 +18,13 @@ const navLinks = [
     <div class="nav-desktop">
       <div class="nav-links">
         {navLinks.map((link) => (
-<<<<<<< HEAD
-          <a href={link.href} class="nav-link">
-=======
           <a href={link.href} class="nav-link" data-i18n={link.i18n}>
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
             {link.label}
           </a>
         ))}
       </div>
 
       <div class="nav-actions">
-<<<<<<< HEAD
-        <a href="#contact" class="nav-cta">Hablemos</a>
-=======
         <button id="theme-toggle" class="nav-icon-button" type="button" aria-label="Cambiar modo claro" title="Cambiar tema">
           <svg class="block light:hidden" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <circle cx="12" cy="12" r="4.5" />
@@ -43,7 +36,6 @@ const navLinks = [
         </button>
         <button id="lang-toggle" class="nav-language" type="button" data-i18n="lang.toggle" aria-label="Cambiar idioma">EN</button>
         <a href="#contact" class="nav-cta" data-i18n="nav.empezar">Hablemos</a>
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
       </div>
     </div>
 
@@ -69,11 +61,7 @@ const navLinks = [
       {navLinks.map((link, index) => (
         <a href={link.href} class="mobile-nav-link" style={`--i: ${index}`}>
           <span class="mobile-nav-index">0{index + 1}</span>
-<<<<<<< HEAD
-          <span>{link.label}</span>
-=======
           <span data-i18n={link.i18n}>{link.label}</span>
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.25" aria-hidden="true">
             <path d="M4 10h12M11 5l5 5-5 5" />
           </svg>
@@ -82,15 +70,11 @@ const navLinks = [
     </nav>
 
     <div class="mobile-menu-footer">
-<<<<<<< HEAD
-      <a href="#contact" class="mobile-cta">Hablemos</a>
-=======
       <div class="mobile-menu-settings">
         <button id="theme-toggle-mobile" class="mobile-setting" type="button" aria-label="Cambiar modo claro">Cambiar tema</button>
         <button id="lang-toggle-mobile" class="mobile-setting" type="button" data-i18n="lang.toggle" aria-label="Cambiar idioma">EN</button>
       </div>
       <a href="#contact" class="mobile-cta" data-i18n="nav.empezar">Hablemos</a>
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
       <a href="mailto:neadevar@gmail.com" class="mobile-menu-email">neadevar@gmail.com</a>
     </div>
   </div>
@@ -158,8 +142,6 @@ const navLinks = [
     }
   });
 
-<<<<<<< HEAD
-=======
   function toggleTheme() {
     const isLight = document.documentElement.classList.toggle('light');
     localStorage.setItem('theme', isLight ? 'light' : 'dark');
@@ -172,5 +154,4 @@ const navLinks = [
   document.querySelectorAll('#lang-toggle, #lang-toggle-mobile').forEach((button) => {
     button.addEventListener('click', () => window.__toggleLang?.());
   });
->>>>>>> bde781a923f948b1bca2145de3b1089d45290695
 </script>

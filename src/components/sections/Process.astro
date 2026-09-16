@@ -2,69 +2,48 @@
 const steps = [
   {
     number: '01',
-    title: 'Exploración estratégica',
-    description: 'Analizamos tu operación, detectamos oportunidades y definimos objetivos claros antes de proponer una solución.',
-    titleKey: 'process.step1.title',
-    descriptionKey: 'process.step1.desc',
+    title: 'Diagnóstico',
+    description: 'Entendemos el problema, el contexto y el resultado que necesitás.',
   },
   {
     number: '02',
-    title: 'Diseño de solución',
-    description: 'Traducimos el problema en una arquitectura clara, priorizada y lista para validar con tu equipo.',
-    titleKey: 'process.step2.title',
-    descriptionKey: 'process.step2.desc',
+    title: 'Propuesta',
+    description: 'Definimos una solución clara, priorizada y lista para validar.',
   },
   {
     number: '03',
-    title: 'Desarrollo y entrega',
-    description: 'Construimos por etapas, mostramos avances y medimos cada decisión contra el objetivo definido.',
-    titleKey: 'process.step3.title',
-    descriptionKey: 'process.step3.desc',
+    title: 'Desarrollo',
+    description: 'Construimos por etapas y compartimos avances concretos.',
   },
   {
     number: '04',
     title: 'Acompañamiento',
-    description: 'Lanzamos, monitoreamos y mejoramos para que la solución siga creciendo junto con tu negocio.',
-    titleKey: 'process.step4.title',
-    descriptionKey: 'process.step4.desc',
+    description: 'Lanzamos, medimos y mejoramos la solución junto a tu equipo.',
   },
 ];
 ---
 
-<section id="process" class="process-section" aria-labelledby="process-title" data-process>
-  <div class="process-shell">
+<section id="process" class="process-section" aria-labelledby="process-title">
+  <div class="process-shell reveal-fade-up" data-reveal>
     <header class="process-heading">
-      <p class="process-eyebrow" data-process-eyebrow>
-        <span class="process-eyebrow-line" aria-hidden="true"></span>
-        <span data-i18n="process.eyebrow">Cómo trabajamos</span>
-        <span class="process-eyebrow-index">/ 03</span>
-      </p>
-
-      <h2 id="process-title" class="process-title" data-process-title data-i18n-html="process.title">
+      <h2 id="process-title" class="process-title">
         Nos enfocamos estratégicamente <span>en cada paso.</span>
       </h2>
     </header>
 
-    <div class="process-track" data-process-track>
-      <span class="process-line" data-process-line aria-hidden="true"></span>
-
-      {steps.map((step, index) => (
-        <article class="process-card" data-process-card data-step={step.number} style={`--process-order: ${index}`}>
-          <div class="process-card-top">
+    <div class="process-track-wrap">
+      <span class="process-line" aria-hidden="true"></span>
+      <ol class="process-track">
+        {steps.map((step) => (
+          <li class="process-step">
             <span class="process-number">{step.number}</span>
-            <span class="process-node" aria-hidden="true"><span></span></span>
-          </div>
-
-          <div class="process-card-copy">
-            <h3 data-i18n={step.titleKey}>{step.title}</h3>
-            <p data-i18n={step.descriptionKey}>{step.description}</p>
-          </div>
-
-          <svg class="process-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
-            <path d="M3 10h14M12 5l5 5-5 5" />
-          </svg>
-        </article>
-      ))}
+            <div class="process-card-copy">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
     </div>
   </div>
 </section>

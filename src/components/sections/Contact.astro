@@ -7,24 +7,19 @@ const email = 'neadevar@gmail.com';
 
 <section id="contact" class="contact-section" aria-labelledby="contact-title">
   <div class="contact-shell">
-    <ScrollReveal type="fade-up">
+    <ScrollReveal>
       <header class="contact-heading">
-        <p class="contact-eyebrow">
-          <span class="contact-eyebrow-line" aria-hidden="true"></span>
-          <span data-i18n="contact.eyebrow">Empecemos</span>
-          <span>/ 04</span>
-        </p>
-        <h2 id="contact-title" class="contact-title" data-i18n-html="contact.title">
+        <h2 id="contact-title" class="contact-title">
           ¿Tenés algo por resolver? <span>Hablemos.</span>
         </h2>
-        <p class="contact-intro" data-i18n="contact.subtitle">
+        <p class="contact-intro">
           Escribinos por WhatsApp o email. Te respondemos con una primera mirada clara, sin vueltas.
         </p>
       </header>
     </ScrollReveal>
 
     <div class="contact-channels">
-      <ScrollReveal type="fade-up" class="contact-channel-reveal">
+      <ScrollReveal class="contact-channel-reveal">
         <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" class="contact-channel" aria-label="Escribir a Neadev por WhatsApp">
           <div class="contact-channel-top">
             <span>01 / WHATSAPP</span>
@@ -40,13 +35,13 @@ const email = 'neadevar@gmail.com';
           </span>
 
           <div class="contact-channel-copy">
-            <h3 data-i18n="contact.whatsapp">WhatsApp</h3>
-            <p data-i18n="contact.whatsapp-sub">Abrir conversación</p>
+            <h3>WhatsApp</h3>
+            <p>Abrir conversación</p>
           </div>
         </a>
       </ScrollReveal>
 
-      <ScrollReveal type="fade-up" class="contact-channel-reveal">
+      <ScrollReveal class="contact-channel-reveal">
         <a href={`mailto:${email}`} class="contact-channel" aria-label={`Enviar un email a ${email}`}>
           <div class="contact-channel-top">
             <span>02 / EMAIL</span>
@@ -63,8 +58,8 @@ const email = 'neadevar@gmail.com';
           </span>
 
           <div class="contact-channel-copy">
-            <h3 data-i18n="contact.email">Email</h3>
-            <p data-i18n="contact.email-sub">neadevar@gmail.com</p>
+            <h3>Email</h3>
+            <p>neadevar@gmail.com</p>
           </div>
         </a>
       </ScrollReveal>
